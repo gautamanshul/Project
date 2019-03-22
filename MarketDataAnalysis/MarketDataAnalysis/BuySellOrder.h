@@ -13,6 +13,8 @@ public:
 	uint64_t getNumShares() const { return numShares_; }
 	uint64_t getSequenceNumber() const { return orderSequence; }
 	uint64_t getClientId() const { return clientid_; }
+	Side getSide() const { return buyOrder_; }
+	UpdateType getUpdateType() const { return orderType_;  }
 	float getPrice() const { return price_; }
 	void setNumShares(uint64_t numOfShares) { numShares_ = numOfShares; }
 	void setPrice(float  price) { price_ = price; }
@@ -30,7 +32,6 @@ protected:
 	uint64_t numShares_ = 0;
 	//std::string symbol_;
 	float price_ = 0;
-	uint64_t pendingFill = 0;
 	uint64_t canceledShares = 0;
 
 };

@@ -10,6 +10,7 @@
 #include "buySellOrder.h"
 #include "ChangeOrder.h"
 #include "CancelOrder.h"
+#include "OrderSummary.h"
 
 uint64_t ExchangeContext::timestampOfPreviousOrder_ = 0;
 uint64_t ExchangeContext::expectedSequenceNumber_ = 0;
@@ -18,7 +19,7 @@ class ExchangeContext {
 	//void UpdateSymbolVolume(const std::string & symbol);
 	ExchangeContext() = default;
 	
-	std::map<std::pair<uint64_t, uint64_t>, IOrder *> openOrders_; 
+	std::unordered_map<std::pair<uint64_t, uint64_t>, std::pair<std::shared_ptr<OrderSummary>, std::shared_ptr<std::map<uint64_t, IOrder *>>>> openOrders_;
 	std::set<uint64_t> sequenceNotReceived;
 	static uint64_t expectedSequenceNumber_;
 	static uint64_t timestampOfPreviousOrder_;
