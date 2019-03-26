@@ -1,10 +1,10 @@
-
+#include "stdafx.h"
 
 #include "ChangeOrder.h"
 #include "ExchangeContext.h"
 
 ChangeOrder::ChangeOrder(const struct OrderUpdate &order)
-	: IOrder(order.entryTimestamp)
+	: IOrder(order.entryTimestamp, order.side, order.type, order.price)
 {
 	// Parse member fields and make sure they follow the specification
 	orderId_ = order.orderId;
@@ -15,6 +15,6 @@ ChangeOrder::ChangeOrder(const struct OrderUpdate &order)
 }
 void ChangeOrder::run(ExchangeContext &context)
 {
-	context.HandleChangeOrder(*this);
+	context.HandleChangeOrder(this);
 }
 

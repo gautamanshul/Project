@@ -1,5 +1,5 @@
 #pragma once
-
+#include "stdafx.h"
 #include <cstdint>
 enum class UpdateType : uint64_t {
 	New = 0,
@@ -19,7 +19,7 @@ struct OrderUpdate {
 	uint64_t orderId;
 	uint64_t entryTimestamp;
 	Side 	  side;
-	uint64_t price;
+	float price;
 	uint64_t quantity;
 };
 

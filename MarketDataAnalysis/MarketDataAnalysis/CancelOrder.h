@@ -1,5 +1,5 @@
 #pragma once
-
+#include "stdafx.h"
 #include "IOrder.h"
 #include <string>
 class ExchangeContext;
@@ -14,6 +14,9 @@ public:
 	const uint64_t& getOrderId() const { return orderId_; }
 	const uint64_t& getCustomerId() const { return customerId_; }
 	const uint64_t getCanceledShareVol() const { return cancelledShares_; }
+	uint64_t getQuantity() override {
+		return  cancelledShares_;
+	}
 
 protected:
 	uint64_t orderId_ = {};

@@ -1,19 +1,21 @@
 #pragma once
+#include "stdafx.h"
 #include <iostream>
 #include <vector>
 #include <unordered_map>
 #include <map>
 #include <memory>
 #include <string>
+#include <algorithm>
 #include <set>
+#include <exception>
 #include "IOrder.h"
 #include "buySellOrder.h"
 #include "ChangeOrder.h"
 #include "CancelOrder.h"
 #include "OrderSummary.h"
+#include "Exception.h"
 
-uint64_t ExchangeContext::timestampOfPreviousOrder_ = 0;
-uint64_t ExchangeContext::expectedSequenceNumber_ = 0;
 
 class ExchangeContext {
 	//void UpdateSymbolVolume(const std::string & symbol);
@@ -44,7 +46,11 @@ public:
 
 
 	void HandleBuySellOrder(BuySellOrder* buySellOrder);
-	void HandleChangeOrder(const ChangeOrder& changeOrder);
-	void HandleCancelOrder(const CancelOrder& cancelOrder);
+	void HandleChangeOrder(ChangeOrder* changeOrder);
+	void HandleCancelOrder(CancelOrder * cancelOrder);
+	uint64_t shareVolBeforeTimeStamp(uint64_t & timestamp, uint64_t orderId, uint64_t customerId);
 };
 
+
+uint64_t ExchangeContext::timestampOfPreviousOrder_ = 0;
+uint64_t ExchangeContext::expectedSequenceNumber_ = 0;

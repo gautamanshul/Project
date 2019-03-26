@@ -1,5 +1,5 @@
 #pragma once
-
+#include "stdafx.h"
 #include "IOrder.h"
 #include "OrderUpdate.h"
 #include <string>
@@ -16,6 +16,9 @@ public:
 	const uint64_t& getCustomerId() const { return customerId_; }
 	const uint64_t getChangedShareVol() const { return numberOfShares_; }
 	float getPrice() const { return price_; }
+	uint64_t getQuantity() override {
+		return  numberOfShares_;
+	}
 
 protected:
 	uint64_t orderId_ = {};

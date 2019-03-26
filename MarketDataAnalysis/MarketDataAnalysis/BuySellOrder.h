@@ -1,4 +1,5 @@
 #pragma once
+#include "stdafx.h"
 #include "IOrder.h"
 #include "OrderUpdate.h"
 
@@ -18,10 +19,14 @@ public:
 	float getPrice() const { return price_; }
 	void setNumShares(uint64_t numOfShares) { numShares_ = numOfShares; }
 	void setPrice(float  price) { price_ = price; }
+	uint64_t getQuantity() override {
+		return  numShares_;
+	}
 
 	// More methods can be definted to access other fields
 	virtual ~BuySellOrder() = default;
 	void run(ExchangeContext& context) override;
+	
 
 protected:
 	uint64_t orderid_;

@@ -1,7 +1,8 @@
+#include "stdafx.h"
 #include"BuySellOrder.h"
 #include "ExchangeContext.h"
 
-BuySellOrder::BuySellOrder(const struct OrderUpdate &order) : IOrder(order.entryTimestamp) {
+BuySellOrder::BuySellOrder(const struct OrderUpdate &order) : IOrder(order.entryTimestamp, order.side, order.type, order.price) {
 	orderid_ = order.orderId;
 	clientid_ = order.clientId;
 	buyOrder_ = order.side;

@@ -15,6 +15,7 @@ public:
 	void updatePrice(float  price) { price_ = price; }
 	void updateSide(Side  side) { buyOrder_ = side; }
 	void updateLastOrderType(UpdateType orderType) { orderType_ = orderType; }
+	Side getSide() const { return buyOrder_; }
 
 	// More methods can be definted to access other fields
 	virtual ~OrderSummary() = default;
